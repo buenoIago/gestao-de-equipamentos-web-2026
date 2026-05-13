@@ -1,4 +1,8 @@
-﻿<h1>Gestão de Equipamentos<H1>
+﻿@using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante
+
+@model Fabricante
+
+<h1>Gestão de Equipamentos<H1>
 
 <hr>
     <a href="/Fabricante/Listar">Controle de Fabricantes</a> -
@@ -7,25 +11,25 @@
     <a href="https://www.academiadoprogramador.net" target="_blank">/Academia do Programador</a>
 <hr>
 
-<h2>Cadastro de Fabricantes</h2>
+<h2>Edição de Fabricantes</h2>
 
-<form action="/Fabricante/Cadastrar "" method="post">
+<form action="/Fabricante/Editar/@Model.Id  "method="post">
     <div>
         <label>Nome</label>
         <br>
-        <input type="text" name="Nome">
+        <input type="text" name="Nome" value="@Model.Nome">
     </div>
 
     <div>
         <label>Email</label>
         <br>
-        <input type="text" name="Email">
+        <input type="text" name="Email" value="@Model.Email">
     </div>
 
     <div>
         <label>Telefone</label>
         <br>
-        <input type="text" name="Telefone">
+        <input type="text" name="Telefone" value="@Model.Telefone">
     </div>  
 
     <hr>

@@ -45,4 +45,24 @@ public class FabricanteController : Controller
         return RedirectToAction("Listar");
     }
 
+    [HttpGet]
+    public ActionResult Editar(string id)
+    {
+        Fabricante? fabricante = repositorioFabricante.SelecionarPorId(id);
+
+        if (fabricante == null)
+            return RedirectToAction(nameof(Listar));
+
+        return View(fabricante);
+    }
+
+    [HttpPost]
+    public ActionResult Editar(string id, string nome, string email, string telefone)
+    {
+        Fabricante fabricanteAtualizado = new Fabricante(nome, email, telefone);
+
+        repositorioFabricante.Editar(id, fabricanteAtualizado);
+
+         return RedirectToAction(nameof(Listar));
+    }
 }
