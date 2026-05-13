@@ -2,6 +2,7 @@ using GestaoDeEquipamentosWeb.ConsoleApp.Compartilhado;
 using GestaoDeEquipamentosWeb.ConsoleApp.Compartilhado.Arquivos;
 using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers;
 
@@ -64,5 +65,29 @@ public class FabricanteController : Controller
         repositorioFabricante.Editar(id, fabricanteAtualizado);
 
          return RedirectToAction(nameof(Listar));
+    }
+
+    [HttpGet]
+    public ActionResult Excluir (string id)
+    {
+        Fabricante? fabricante = repositorioFabricante.SelecionarPorId(id);
+
+        if (fabricante == null)
+            return RedirectToAction(nameof(Listar));
+
+        return View();
+    }
+    
+    [HttpPost]
+    public ActionResult ExcluirConfirmado(string id)
+    {
+        Fabricante? fabricante = repositorioFabricante.SelecionarPorId(id);
+
+        if (fabricante == null)
+            return RedirectToAction(nameof(Listar));
+
+        repositorioFabricante.Excluir(fabricante);
+
+        return RedirectToAction(nameof(Listar));
     }
 }
