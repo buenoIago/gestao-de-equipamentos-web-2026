@@ -13,6 +13,7 @@
     <Folder Include="ModuloFabricante\" />
     <Folder Include="Controllers\" />
     <Folder Include="Views\" />
+    <Folder Include="Views\Fabricante\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
 
