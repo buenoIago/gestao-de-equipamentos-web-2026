@@ -2,7 +2,7 @@
 
 @model List<Fabricante>;
 
-<h1>Gtesão de Equipamentos<H1>
+<h1>Gestão de Equipamentos<H1>
 
 <hr>
     <a href="/Fabricante/Listar">Controle de Fabricantes</a> -
@@ -13,9 +13,8 @@
 
 <h2>Listagem de Fabricantes</h2>
 
-
 <hr>
-<a href=""></a>
+    <a href="/Fabricante/Cadastrar">Cadastrar Novo</a>
 <hr>
 
 <Table>
@@ -30,12 +29,12 @@
     <tbody>
         @foreach (Fabricante f in Model)
         {
-         <tr>
-            <td>@f.Id</td>
-            <td>@f.Nome</td>
-            <td>@f.Email</td>
-            <td>@f.Telefone</td>
-         </tr>   
+            <tr>
+                <td>@f.Id</td>
+                <td>@f.Nome</td>
+                <td>@f.Email</td>
+                <td>@f.Telefone</td>
+            </tr>   
         }
     </tbody>
 </Table>
