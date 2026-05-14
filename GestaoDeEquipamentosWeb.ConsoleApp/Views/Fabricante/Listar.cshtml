@@ -7,18 +7,16 @@
 
 @model List<Fabricante>;
 
-<hr>
-    <a href="/Fabricante/Cadastrar">Cadastrar Novo</a>
-<hr>
+<a class="btn-cadastrar" href="/Fabricante/Cadastrar">Cadastrar Novo</a>
 
-<Table>
+<Table class="registros">
     <thead>
         <tr>
-            <td>| ID |</td>
-            <td> Nome | </td>
-            <td> Email |</td>
-            <td> Telefone |</td>
-            <td> Ações |</td>
+            <th> ID </th>
+            <th> Nome  </th>
+            <th> Email </th>
+            <th> Telefone </th>
+            <th> Ações </th>
         </tr>
     </thead>
     <tbody>
@@ -29,10 +27,11 @@
                 <td>@f.Nome</td>
                 <td>@f.Email</td>
                 <td>@f.Telefone</td>
-                <td><a href="/Fabricante/Editar/@f.Id">Editar</a></td>
-                <td><a href="/Fabricante/Excluir/">Excluir</a></td>
+                <td>
+                    <a href="/Fabricante/Editar/@f.Id">Editar</a>
+                    <a href="/Fabricante/Excluir/">Excluir</a>
+                </td>
             </tr>   
         }
     </tbody>
 </Table>
-
