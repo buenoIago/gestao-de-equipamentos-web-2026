@@ -1,0 +1,33 @@
+html, 
+body {
+    height: 100%;
+}
+
+body{
+    font-family: "Google Sans", sans-serif;
+
+    background-image: linear-gradient(120deg,  #99acb8 0% , #005397 100% );
+
+    display: flex;
+    flex-direction: column;
+
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.links-navbar {
+    display: flex;
+    gap: 20px;
+
+    margin-left: auto;
+}
+
+.links-navbar > a {
+    color: black;
+}
