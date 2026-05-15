@@ -3,33 +3,33 @@
     ViewBag.Titulo = "Cadastro Equipamentos";
 }
 
-<form action="/Equipamento/Cadastrar "method="post">
-    <div>
+<form class="formulario" action="/Equipamento/Cadastrar "method="post">
+    <div class="formulario-campo"> 
         <label>Nome</label>
         <br>
         <input type="text" name="Nome">
     </div>
 
-    <div>
-        <label>PrecoAquisicao</label>
+    <div class="formulario-campo">
+        <label>Preço de Aquisicação</label>
         <br>
         <input type="text" name="PrecoAquisicacao">
     </div>
 
-    <div>
-        <label>DataFabricacao</label>
+    <div class="formulario-campo">
+        <label>Data de Fabricação</label>
         <br>
         <input type="text" name="DataFabricacao">
     </div>
 
-    <div>
+    <div class="formulario-campo">
         <label>Fabricante</label>
         <br>
         <input type="text" name="Fabricante">
     </div>
 
-    <hr>
-    <a href="/Equipamento/Listar">Voltar</a>
+    <div class="formulario-acoes">
+        <a href="/Equipamento/Listar">Voltar</a>
     <button type="submit"">Confirmar</button>
-
+    </div>
 </form>
