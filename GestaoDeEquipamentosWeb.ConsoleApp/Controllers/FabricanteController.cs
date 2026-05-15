@@ -64,7 +64,7 @@ public class FabricanteController : Controller
 
         repositorioFabricante.Editar(id, fabricanteAtualizado);
 
-         return RedirectToAction(nameof(Listar));
+        return RedirectToAction(nameof(Listar));
     }
 
     [HttpGet]

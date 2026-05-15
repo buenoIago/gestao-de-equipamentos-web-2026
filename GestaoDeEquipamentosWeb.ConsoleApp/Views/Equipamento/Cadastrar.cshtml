@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Cadastro Equipamentos";
+}
+
+<form action="/Equipamento/Cadastrar "method="post">
+    <div>
+        <label>Nome</label>
+        <br>
+        <input type="text" name="Nome">
+    </div>
+
+    <div>
+        <label>PrecoAquisicao</label>
+        <br>
+        <input type="text" name="PrecoAquisicacao">
+    </div>
+
+    <div>
+        <label>DataFabricacao</label>
+        <br>
+        <input type="text" name="DataFabricacao">
+    </div>
+
+    <div>
+        <label>Fabricante</label>
+        <br>
+        <input type="text" name="Fabricante">
+    </div>
+
+    <hr>
+    <a href="/Equipamento/Listar">Voltar</a>
+    <button type="submit"">Confirmar</button>
+
+</form>
