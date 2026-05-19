@@ -40,6 +40,6 @@ public class ChamadoController : Controller
 
         }
 
-        return View();
+        return View(visualizarChamados);
     }
 }

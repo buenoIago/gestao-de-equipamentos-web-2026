@@ -1,14 +1,12 @@
-﻿@using GestaoDeEquipamentosWeb.ConsoleApp.Models
-
-@{
+﻿@{
     Layout = "_Layout";
     ViewBag.Titulo = "Listagem de Equipamentos";
 }
 
 @model List<ListarEquipamentosViewModel>
 
-<a class="btn-cadastrar" href="/Equipamento/Cadastrar">Cadastrar Novo</a>
 
+<a class="btn-cadastrar" asp-action="Cadastrar">Cadastrar Novo</a>
 
 <table class="registros">
     <thead>
