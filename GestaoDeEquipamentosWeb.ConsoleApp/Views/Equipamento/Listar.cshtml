@@ -23,14 +23,14 @@
         @foreach (ListarEquipamentosViewModel e in Model)
         {
             <tr>
-                <td>@e.Id</td>
-                <td>@e.Nome</td>
-                <td>@e.PrecoAquisicao.ToString("C2")</td>
-                <td>@e.DataFabricacao.ToShortDateString()</td>
-                <td>@e.Fabricante</td>
-                <td>
-                    <a href="/Equipamento/Editar/@e.Id">Editar</a>
-                    <a href="/Equipamento/Excluir/@e.Id">Excluir</a>
+                <td data-label="ID">@e.Id</td>
+                <td data-label="Nome">@e.Nome</td>
+                <td data-label="Preço de Aquisição">@e.PrecoAquisicao.ToString("C2")</td>
+                <td data-label="Data de Fabricação">@e.DataFabricacao.ToShortDateString()</td>
+                <td data-label="Fabricante">@e.Fabricante</td>
+                <td data-label="Ações">
+                    <a asp-action="Editar" asp-route-id="@e.Id">Editar</a>
+                    <a asp-action="Excluir" asp-route-id="@e.Id">Excluir</a>
                 </td>
             </tr>
         }
