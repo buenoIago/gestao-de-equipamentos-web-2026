@@ -1,26 +1,26 @@
-﻿@{
+﻿﻿@using GestaoDeEquipamentosWeb.ConsoleApp.Models
+
+@{
     Layout = "_Layout";
     ViewBag.Titulo = "Listagem de Fabricantes";
 }
 
-@using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante
-
-@model List<Fabricante>;
+@model List<ListarFabricantesViewModel>;
 
 <a class="btn-cadastrar" href="/Fabricante/Cadastrar">Cadastrar Novo</a>
 
-<Table class="registros">
+<table class="registros">
     <thead>
         <tr>
-            <th> ID </th>
-            <th> Nome  </th>
-            <th> Email </th>
-            <th> Telefone </th>
-            <th> Ações </th>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (Fabricante f in Model)
+        @foreach (ListarFabricantesViewModel f in Model)
         {
             <tr>
                 <td>@f.Id</td>
@@ -29,9 +29,9 @@
                 <td>@f.Telefone</td>
                 <td>
                     <a href="/Fabricante/Editar/@f.Id">Editar</a>
-                    <a href="/Fabricante/Excluir/">Excluir</a>
+                    <a href="/Fabricante/Excluir/@f.Id">Excluir</a>
                 </td>
-            </tr>   
+            </tr>
         }
     </tbody>
-</Table>
+</table>

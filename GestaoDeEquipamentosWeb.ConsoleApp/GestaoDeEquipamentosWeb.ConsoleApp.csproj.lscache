@@ -65,6 +65,7 @@ Controllers/
  EquipamentoController.cs
  FabricanteController.cs
  HomeController.cs
+Models/FabricanteViewModels.cs
 ModuloChamado/
  Chamado.cs
  RepositorioChamadoEmArquivo.cs

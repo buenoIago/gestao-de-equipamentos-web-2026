@@ -1,13 +1,13 @@
-﻿@{
+﻿﻿@using GestaoDeEquipamentosWeb.ConsoleApp.Models
+
+@{
     Layout = "_Layout";
-    ViewBag.Titulo = "Edição de Fabricantes";
+    ViewBag.Titulo = "Edição de Fabricante";
 }
 
-@using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante
+@model EditarFabricanteViewModel;
 
-@model Fabricante
-
-<form class="formulario" action="/Fabricante/Editar/@Model.Id  "method="post">
+<form class="formulario" action="/Fabricante/Editar/@Model.Id" method="post">
     <div class="formulario-campo">
         <label>Nome</label>
         <br>
@@ -17,19 +17,17 @@
     <div class="formulario-campo">
         <label>Email</label>
         <br>
-        <input type="text" name="Email" value="@Model.Email">
+        <input type="email" name="Email" value="@Model.Email">
     </div>
 
     <div class="formulario-campo">
         <label>Telefone</label>
         <br>
         <input type="text" name="Telefone" value="@Model.Telefone">
-    </div>  
-
-    <hr>
-    <div class="formulario-acoes">
-        <a href="Fabricante/Listar">Voltar</a>
-        <button type="submit"">Confirmar</button>
     </div>
 
+    <div class="formulario-acoes">
+        <a href="/Fabricante/Listar">Voltar</a> 
+        <button type="submit">Confirmar</button>
+    </div>
 </form>

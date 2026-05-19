@@ -172,3 +172,16 @@ nav {
     font-weight: 600;
 }
 
+.formulario-validacao-sumario {
+    margin-bottom: 18px;
+    color: rgb(160, 44, 74);
+    font-weight: 600;
+}
+
+.formulario-validacao-campo {
+    display: block;
+    margin-top: 7px;
+    color: rgb(160, 44, 74);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
