@@ -26,12 +26,12 @@ public class FabricanteController : Controller
     {
         List<Fabricante> fabricantes = repositorioFabricante.SelecionarTodos();
 
-        List<ListarFabricantesViewModel> listarVms = new List<ListarFabricantesViewModel>();
+        List<SelectListItem> listarVms = new List<SelectListItem>();
 
         foreach (Fabricante f in fabricantes)
         {
             // mapear objeto por objeto para viewModels
-            ListarFabricantesViewModel viewModel = new ListarFabricantesViewModel(
+            SelectListItem viewModel = new SelectListItem(
                 f.Id,
                 f.Nome,
                 f.Email,
