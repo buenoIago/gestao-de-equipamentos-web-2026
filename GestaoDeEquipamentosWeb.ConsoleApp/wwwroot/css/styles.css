@@ -4,7 +4,7 @@
 
 html,
 body {
-    height: 100%;
+    min-height: 100%;
 }
 
 body {
@@ -113,7 +113,10 @@ nav {
     text-transform: uppercase;
 }
 
-.formulario-campo input {
+.formulario-campo input
+/* .formulario-campo select
+.formulario-campo textarea  */
+{
     width: 100%;
     box-sizing: border-box;
     border: 1px solid #24446d;
@@ -125,13 +128,17 @@ nav {
     font-size: 1rem;
 }
 
-.formulario-campo input:focus {
+.formulario-campo input:focus
+.formulario-campo select:focus
+.formulario-campo textarea:focus  {
     border-color: #33609c;
     outline: 3px solid #3a6bac;
 }
 
-.formulario-campo input:disabled {
-    background-color: #24446d;
+.formulario-campo input:disabled
+.formulario-campo select:disabled
+.formulario-campo textarea:disabled {
+    background-color: #ffffff;
     color: #24446d;
 }
 
@@ -164,11 +171,11 @@ nav {
 .formulario-alerta {
     margin-top: 0;
     margin-bottom: 24px;
-    border-left: 4px solid rgb(152, 62, 209);
+    border-left: 4px solid #24446d;
     border-radius: 10px;
     padding: 14px 16px;
-    background-color: rgba(152, 62, 209, 0.1);
-    color: rgb(55, 44, 59);
+    background-color: rgba(22, 94, 171, 0.1);
+    color: rgb(0, 0, 0);
     font-weight: 600;
 }
 
