@@ -1,9 +1,11 @@
+using System.Security.Cryptography.X509Certificates;
 using GestaoDeEquipamentosWeb.ConsoleApp.Compartilhado;
 using GestaoDeEquipamentosWeb.ConsoleApp.Compartilhado.Arquivos;
 using GestaoDeEquipamentosWeb.ConsoleApp.Models;
 using GestaoDeEquipamentosWeb.ConsoleApp.ModuloChamado;
 using GestaoDeEquipamentosWeb.ConsoleApp.ModuloEquipamento;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 public class ChamadoController : Controller
 {
@@ -41,5 +43,66 @@ public class ChamadoController : Controller
         }
 
         return View(visualizarChamados);
+    }
+
+    [HttpGet]
+    public ActionResult Cadastrar()
+    {
+        ViewBag.Equipamentos = CarregarEquipamentos();
+
+        CadastrarChamadoViewModel cadastrarVm = new CadastrarChamadoViewModel(string.Empty, null, string.Empty);
+
+        return View(cadastrarVm);
+    }
+
+    [HttpPost]
+    public ActionResult Cadastrar(CadastrarChamadoViewModel cadastrarVm)
+    {
+        Equipamento? equipamento =
+            repositorioEquipamento.SelecionarPorId(cadastrarVm.EquipamentoId);
+
+        if (!string.IsNullOrWhiteSpace(cadastrarVm.EquipamentoId) && equipamento == null)
+        {
+            ModelState.AddModelError(
+                nameof(cadastrarVm.EquipamentoId),
+                "Selecione um equipamento válido."
+            );
+        }
+
+        if (!ModelState.IsValid)
+        {
+            ViewBag.Equipamentos = CarregarEquipamentos();
+
+            return View(cadastrarVm);
+        }
+
+        Chamado novoChamado = new Chamado(
+            cadastrarVm.Titulo,
+            equipamento!,
+            cadastrarVm.Descricao
+        );
+
+        repositorioChamado.Cadastrar(novoChamado);
+
+        return RedirectToAction(nameof(Listar));
+    }
+
+    private List<SelectListItem> CarregarEquipamentos()
+    {
+        List<Equipamento> equipamentos = repositorioEquipamento.SelecionarTodos();
+
+        List<SelectListItem> selecionarEquipamentos = new List<SelectListItem>();
+
+        foreach (Equipamento e in equipamentos)
+        {
+            SelectListItem selecionarEquipamentoVm = new SelectListItem(
+                e.Nome,
+                e.Id
+            );
+
+            selecionarEquipamentos.Add(selecionarEquipamentoVm);
+        }
+
+        return selecionarEquipamentos;
     }
 }
