@@ -139,6 +139,39 @@ public class ChamadoController : Controller
         return RedirectToAction(nameof(Listar));
     }
 
+    [HttpGet]
+    public ActionResult Excluir(string id)
+    {
+        Chamado? chamado = repositorioChamado.SelecionarPorId(id);
+
+        if (chamado == null)
+            return RedirectToAction(nameof(Listar));
+
+        ExcluirChamadoViewModel excluirVm = new ExcluirChamadoViewModel(
+            chamado.Id,
+            chamado.Titulo,
+            chamado.Descricao,
+            chamado.Equipamento.Nome,
+            chamado.DataAbertura,
+            chamado.TempoDecorrido,
+            chamado.EstaConcluido
+        );
+
+        return View(excluirVm);
+    }
+
+    [HttpPost]
+    [ActionName("Excluir")]
+    public ActionResult ExcluirConfirmado(ExcluirChamadoViewModel excluirVm)
+    {
+        Chamado? chamado = repositorioChamado.SelecionarPorId(excluirVm.Id);
+
+        if (chamado != null)
+            repositorioChamado.Excluir(chamado);
+
+        return RedirectToAction(nameof(Listar));
+    }
+
     private List<SelectListItem> CarregarEquipamentos()
     {
         List<Equipamento> equipamentos = repositorioEquipamento.SelecionarTodos();
