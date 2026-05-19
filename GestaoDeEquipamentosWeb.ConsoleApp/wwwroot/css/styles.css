@@ -114,8 +114,8 @@ nav {
 }
 
 .formulario-campo input
-/* .formulario-campo select
-.formulario-campo textarea  */
+.formulario-campo select
+.formulario-campo textarea 
 {
     width: 100%;
     box-sizing: border-box;
@@ -181,14 +181,14 @@ nav {
 
 .formulario-validacao-sumario {
     margin-bottom: 18px;
-    color: rgb(160, 44, 74);
+    color: rgb(211, 15, 15);
     font-weight: 600;
 }
 
 .formulario-validacao-campo {
     display: block;
     margin-top: 7px;
-    color: rgb(160, 44, 74);
+    color: rgb(211, 15, 15);
     font-size: 0.9rem;
     font-weight: 600;
 }
