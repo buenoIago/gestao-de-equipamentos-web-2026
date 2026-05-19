@@ -47,12 +47,21 @@ public class FabricanteController : Controller
     [HttpGet]
     public ActionResult Cadastrar()
     {
-        return View();
+        CadastrarFabricanteViewModel cadastrarVm = new CadastrarFabricanteViewModel(
+            string.Empty,
+            string.Empty,
+            string.Empty
+        );
+
+        return View(cadastrarVm);
     }
 
     [HttpPost]
     public ActionResult Cadastrar(CadastrarFabricanteViewModel cadastrarVm)
     {
+        if (!ModelState.IsValid)
+            return View(cadastrarVm);
+            
         Fabricante novoFabricante = new Fabricante(
             cadastrarVm.Nome,
             cadastrarVm.Email,
@@ -85,6 +94,9 @@ public class FabricanteController : Controller
     [HttpPost]
     public ActionResult Editar(EditarFabricanteViewModel editarVm)
     {
+        if (!ModelState.IsValid)
+            return View(editarVm);
+            
         Fabricante fabricanteAtualizado = new Fabricante(
             editarVm.Nome,
             editarVm.Email,
