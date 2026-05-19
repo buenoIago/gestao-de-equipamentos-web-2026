@@ -87,6 +87,58 @@ public class ChamadoController : Controller
         return RedirectToAction(nameof(Listar));
     }
 
+    [HttpGet]
+    public ActionResult Editar(string id)
+    {
+        Chamado? chamado = repositorioChamado.SelecionarPorId(id);
+
+        if (chamado == null)
+            return RedirectToAction(nameof(Listar));
+
+        EditarChamadoViewModel editarChamadoVm = new EditarChamadoViewModel(
+            chamado.Id,
+            chamado.Titulo,
+            chamado.Descricao,
+            chamado.Equipamento.Id
+        );
+
+        ViewBag.Equipamentos = CarregarEquipamentos();
+
+        return View(editarChamadoVm);
+    }
+
+    [HttpPost]
+    public ActionResult Editar(EditarChamadoViewModel editarVm)
+    {
+        Equipamento? equipamento =
+            repositorioEquipamento.SelecionarPorId(editarVm.EquipamentoId);
+
+        if (!string.IsNullOrWhiteSpace(editarVm.EquipamentoId) && equipamento == null)
+        {
+            ModelState.AddModelError(
+                nameof(editarVm.EquipamentoId),
+                "Selecione um equipamento válido."
+            );
+        }
+
+        if (!ModelState.IsValid)
+        {
+            ViewBag.Equipamentos = CarregarEquipamentos();
+
+            return View(editarVm);
+        }
+
+        Chamado chamadoAtualizado = new Chamado(
+            editarVm.Titulo,
+            equipamento,
+            editarVm.Descricao
+        );
+
+        repositorioChamado.Editar(editarVm.Id, chamadoAtualizado);
+
+        return RedirectToAction(nameof(Listar));
+    }
+
     private List<SelectListItem> CarregarEquipamentos()
     {
         List<Equipamento> equipamentos = repositorioEquipamento.SelecionarTodos();

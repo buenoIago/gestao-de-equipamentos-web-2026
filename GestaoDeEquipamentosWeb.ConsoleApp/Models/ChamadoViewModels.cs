@@ -22,3 +22,17 @@ public record CadastrarChamadoViewModel(
     [Required(ErrorMessage = "O campo \"Equipamento\" deve ser preenchido.")]
     string EquipamentoId
 );
+
+public record EditarChamadoViewModel(
+    string Id,
+
+    [Required(ErrorMessage = "O campo \"Titulo\" deve ser preenchido.")]
+    [StringLength(50, MinimumLength = 2, ErrorMessage = "O campo \"Titulo\" deve conter entre 2 e 50 caracteres.")]
+    string Titulo,
+
+    [StringLength(500, ErrorMessage = "O campo \"Descricao\" deve conter no maximo 500 caracteres.")]
+    string? Descricao,
+
+    [Required(ErrorMessage = "O campo \"Equipamento\" deve ser preenchido.")]
+    string EquipamentoId
+);
