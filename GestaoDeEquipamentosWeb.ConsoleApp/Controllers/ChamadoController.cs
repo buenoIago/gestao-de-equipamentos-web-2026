@@ -50,7 +50,7 @@ public class ChamadoController : Controller
     {
         ViewBag.Equipamentos = CarregarEquipamentos();
 
-        CadastrarChamadoViewModel cadastrarVm = new CadastrarChamadoViewModel(string.Empty, null, string.Empty);
+        CadastrarChamadoViewModel cadastrarVm = new CadastrarChamadoViewModel(string.Empty, null, string.Empty, false);
 
         return View(cadastrarVm);
     }
@@ -99,7 +99,8 @@ public class ChamadoController : Controller
             chamado.Id,
             chamado.Titulo,
             chamado.Descricao,
-            chamado.Equipamento.Id
+            chamado.Equipamento.Id,
+            false
         );
 
         ViewBag.Equipamentos = CarregarEquipamentos();
@@ -130,7 +131,8 @@ public class ChamadoController : Controller
 
         Chamado chamadoAtualizado = new Chamado(
             editarVm.Titulo,
-            equipamento,
+            equipamento!,
+            editarVm.EstaConcluido,
             editarVm.Descricao
         );
 
