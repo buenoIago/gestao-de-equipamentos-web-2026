@@ -113,8 +113,8 @@ nav {
     text-transform: uppercase;
 }
 
-.formulario-campo input
-.formulario-campo select
+.formulario-campo input,
+.formulario-campo select,
 .formulario-campo textarea 
 {
     width: 100%;
@@ -128,15 +128,15 @@ nav {
     font-size: 1rem;
 }
 
-.formulario-campo input:focus
-.formulario-campo select:focus
+.formulario-campo input:focus,
+.formulario-campo select:focus,
 .formulario-campo textarea:focus  {
     border-color: #33609c;
     outline: 3px solid #3a6bac;
 }
 
-.formulario-campo input:disabled
-.formulario-campo select:disabled
+.formulario-campo input:disabled,
+.formulario-campo select:disabled,
 .formulario-campo textarea:disabled {
     background-color: #ffffff;
     color: #24446d;
@@ -192,3 +192,5 @@ nav {
     font-size: 0.9rem;
     font-weight: 600;
 }
+
+

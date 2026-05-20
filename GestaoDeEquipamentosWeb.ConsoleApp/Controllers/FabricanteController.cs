@@ -4,6 +4,7 @@ using GestaoDeEquipamentosWeb.ConsoleApp.Models;
 using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers;
 
@@ -26,12 +27,11 @@ public class FabricanteController : Controller
     {
         List<Fabricante> fabricantes = repositorioFabricante.SelecionarTodos();
 
-        List<SelectListItem> listarVms = new List<SelectListItem>();
+        List<ListarFabricantesViewModel> listarVms = new List<ListarFabricantesViewModel>();
 
         foreach (Fabricante f in fabricantes)
         {
-            // mapear objeto por objeto para viewModels
-            SelectListItem viewModel = new SelectListItem(
+            ListarFabricantesViewModel viewModel = new ListarFabricantesViewModel(
                 f.Id,
                 f.Nome,
                 f.Email,

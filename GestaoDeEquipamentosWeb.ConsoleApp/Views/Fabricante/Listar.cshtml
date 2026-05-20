@@ -5,7 +5,7 @@
     ViewBag.Titulo = "Listagem de Fabricantes";
 }
 
-@model List<GestaoDeEquipamentosWeb.ConsoleApp.Models.SelectListItem>;
+@model List<ListarFabricantesViewModel>;
 
 <a class="btn-cadastrar" asp-action="Cadastrar">Cadastrar Novo</a>
 
@@ -20,7 +20,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (GestaoDeEquipamentosWeb.ConsoleApp.Models.SelectListItem f in Model)
+        @foreach (ListarFabricantesViewModel f in Model)
         {
             <tr>
                 <td data-label="ID">@f.Id</td>
