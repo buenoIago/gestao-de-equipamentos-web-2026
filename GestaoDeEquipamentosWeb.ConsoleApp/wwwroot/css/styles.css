@@ -53,7 +53,7 @@ nav{
     margin: 15px 0;
 }
 
-.filtro-listagem{
+.filtros-listagem{
     display: flex;
     gap: 10px;
 
@@ -71,7 +71,7 @@ nav{
     cursor: pointer;
 }
 
-.filtro-listagem a.ativo{
+.filtros-listagem a.ativo{
     background-color: #24446d;
     color: white;
 }
