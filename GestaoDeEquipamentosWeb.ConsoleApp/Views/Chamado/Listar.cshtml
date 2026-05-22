@@ -10,7 +10,7 @@
 <div class="filtros-listagem">
     <a class="@(string.IsNullOrWhiteSpace(ViewBag.StatusSelecionado) ? "ativo" : "")" asp-action="listar">Todos</a>
     <a class="@(ViewBag.StatusSelecionado == "em-aberto" ? "ativo" : "") asp-action="listar""  asp-route-status="em-aberto">Em aberto</a>
-    <a class="@(ViewBag.StatusSelecionado == "concluidos" ? "ativo" : "") asp-action="listar""  asp-route-status="conluidos">Concluído</a>
+    <a class="@(ViewBag.StatusSelecionado == "concluidos" ? "ativo" : "") asp-action="listar""  asp-route-status="conlcuidos">Concluído</a>
 </div>
 
 @if (Model.Count == 0)

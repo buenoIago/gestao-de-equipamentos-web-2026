@@ -1,3 +1,5 @@
+using GestaoDeEquipamentosWeb.ConsoleApp.ModuloChamado;
+
 namespace GestaoDeEquipamentosWeb.ConsoleApp.Compartilhado;
 
 public interface IRepositorio<T> where T : EntidadeBase<T>

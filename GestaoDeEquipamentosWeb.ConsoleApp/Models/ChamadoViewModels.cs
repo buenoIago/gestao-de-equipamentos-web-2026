@@ -20,9 +20,7 @@ public record CadastrarChamadoViewModel(
     string? Descricao,
 
     [Required(ErrorMessage = "O campo \"Equipamento\" deve ser preenchido.")]
-    string EquipamentoId,
-
-    bool EstaConcluido
+    string EquipamentoId
 );
 
 public record EditarChamadoViewModel(
