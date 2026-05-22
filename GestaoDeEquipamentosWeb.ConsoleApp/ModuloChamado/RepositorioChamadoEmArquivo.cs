@@ -1,5 +1,6 @@
 using GestaoDeEquipamentosWeb.ConsoleApp.Compartilhado;
 using GestaoDeEquipamentosWeb.ConsoleApp.Compartilhado.Arquivos;
+using static GestaoDeEquipamentosWeb.ConsoleApp.ModuloChamado.IRepositorioChamado;
 
 namespace GestaoDeEquipamentosWeb.ConsoleApp.ModuloChamado;
 
@@ -7,28 +8,16 @@ public class RepositorioChamadoEmArquivo : RepositorioBaseEmArquivo<Chamado>, IR
 {
     public RepositorioChamadoEmArquivo(ContextoJson contexto) : base(contexto) { }
 
-    public List<Chamado> SelecionarChamadosConcluidos()
+        public List<Chamado> FiltrarChamados(FiltroChamado filtro)
     {
-        List<Chamado> chamadosConcluidos = new List<Chamado>();
+        List<Chamado> chamadosFiltrados = new List<Chamado>();
 
         foreach (Chamado c in registros)
         {
-            if (c.EstaConcluido)
-                chamadosConcluidos.Add(c);
+            if (filtro(c))
+                chamadosFiltrados.Add(c);
         }
-        return chamadosConcluidos;
-    }
-
-    public List<Chamado> SelecionarChamadosEmAberto()
-    {
-        List<Chamado> chamadosEmAberto = new List<Chamado>();
-
-        foreach (Chamado c in registros)
-        {
-            if (!c.EstaConcluido)
-                chamadosEmAberto.Add(c);
-        }
-        return chamadosEmAberto;
+        return chamadosFiltrados;
     }
 
     protected override List<Chamado> CarregarRegistros()
