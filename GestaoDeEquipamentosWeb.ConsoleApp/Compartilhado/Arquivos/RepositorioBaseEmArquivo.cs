@@ -69,4 +69,16 @@ public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase<T>
     {
         return registros;
     }
+
+    public List<T> Filtrar(Predicate<T> filtro)
+    {
+        List<T> registrosFiltrados = new List<T>();
+
+        foreach (T e in registros)
+        {
+            if (filtro(e))
+                registrosFiltrados.Add(e);
+        }
+        return registrosFiltrados;
+    }
 }

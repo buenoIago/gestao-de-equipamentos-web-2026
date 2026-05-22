@@ -9,4 +9,5 @@ public interface IRepositorio<T> where T : EntidadeBase<T>
     bool Excluir(T registro);
     T? SelecionarPorId(string idSelecionado);
     List<T> SelecionarTodos();
+    List<T> Filtrar(Predicate<T> filtro);
 }
