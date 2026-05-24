@@ -31,7 +31,7 @@ nav a{
 }
 
 nav a:hover{
-    color:#4da3ff;
+    color:#081e36;
     transform: translateY(-2px);
 }
 
@@ -50,7 +50,7 @@ nav a:hover{
 .btn-cadastrar {
     display: inline-block;
 
-    border: 1px solid #24446d;
+    border: 1px solid #114a94;
     border-radius: 100vmax;
 
     color: #000000;

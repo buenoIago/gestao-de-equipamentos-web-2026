@@ -9,6 +9,33 @@
 
 <a class="btn-cadastrar" asp-action="Cadastrar">Cadastrar Novo</a>
 
+<div class="filtros-listagem">
+
+    <a class="@(string.IsNullOrWhiteSpace(ViewBag.StatusSelecionado) ? "ativo" : "")"
+       asp-action="Listar">
+        Todos
+    </a>
+
+    <a class="@(ViewBag.StatusSelecionado == "A-Z" ? "ativo" : "")" 
+        asp-action="Listar"
+        asp-route-status="A-Z">
+        A-Z 
+    </a>
+
+     <a class="@(ViewBag.StatusSelecionado == "Z-A" ? "ativo" : "")"
+        asp-action="Listar"
+        asp-route-status="Z-A">
+        Z-A
+    </a>
+
+</div>
+
+@if (Model.Count == 0)
+{
+    <p class="formulario-alerta">Nenhum Fabricante registrado!</p>
+}
+
+
 <table class="registros">
     <thead>
         <tr>

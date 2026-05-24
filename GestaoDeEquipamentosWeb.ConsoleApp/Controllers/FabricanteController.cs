@@ -23,9 +23,28 @@ public class FabricanteController : Controller
     }
 
     [HttpGet]
-    public ActionResult Listar()
+    public ActionResult Listar(string status)
     {
-        List<Fabricante> fabricantes = repositorioFabricante.SelecionarTodos();
+        string? statusSelecionado = status;
+        
+        List<Fabricante> fabricantes;
+
+        if (statusSelecionado == "A-Z")
+        {
+            fabricantes = repositorioFabricante.SelecionarTodos()
+            .OrderBy(x => x.Nome)
+            .ToList();
+        }
+        
+        else if (statusSelecionado == "Z-A")
+        {
+            fabricantes = repositorioFabricante.SelecionarTodos()
+            .OrderByDescending(x => x.Nome)
+            .ToList();
+        }
+
+        else
+            fabricantes = repositorioFabricante.SelecionarTodos();
 
         List<ListarFabricantesViewModel> listarVms = new List<ListarFabricantesViewModel>();
 
@@ -40,6 +59,8 @@ public class FabricanteController : Controller
 
             listarVms.Add(viewModel);
         }
+
+        ViewBag.statusSelecionado = statusSelecionado;
 
         return View(listarVms);
     }
