@@ -20,10 +20,19 @@ body {
 }
 
 nav{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding: 18px 40px;
+    border-radius: 20px;
+}
 
+nav a{
+    transition: 0.3s;
+}
+
+nav a:hover{
+    color:#4da3ff;
+    transform: translateY(-2px);
 }
 
 .links-navbar {
@@ -226,7 +235,7 @@ nav{
     height:90vh;
 
     background-image:
-        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.35)),
         url('/css/Img/capa.png');
 
     background-size:cover;
@@ -235,7 +244,13 @@ nav{
 
     display:flex;
     align-items:center;
-    }
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    box-shadow:0 15px 40px rgba(0,0,0,0.35);
+}
 
 .overlay{
     width:100%;
@@ -249,18 +264,23 @@ nav{
 
 .conteudo{
     color:white;
-    margin-left:80px;
-    max-width:600px;
+    margin-left:100px;
+    max-width:650px;
 }
 
 .conteudo h1{
-    font-size:72px;
-    margin-bottom:20px;
-    line-height:1.1;
+    font-size:84px;
+    margin-bottom:25px;
+    line-height:1;
+
+    font-weight:700;
+    letter-spacing:-2px;
 }
 
 .conteudo p{
-    font-size:28px;
-    line-height:1.5;
-    margin-bottom:30px;
+    font-size:26px;
+    line-height:1.6;
+    margin-bottom:40px;
+
+    color:rgba(255,255,255,0.9);
 }
