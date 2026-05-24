@@ -26,6 +26,18 @@
         Mais Antigos
     </a>
 
+    <a class="@(ViewBag.StatusSelecionado == "maior-Preco" ? "ativo" : "")"
+        asp-action="Listar"
+        asp-route-status="maior-Preco">
+        Maior Preço
+    </a>
+
+    <a class="@(ViewBag.StatusSelecionado == "menor-Preco" ? "ativo" : "")"
+        asp-action="Listar"
+        asp-route-status="menor-Preco">
+        Menor Preço
+    </a>
+
 </div>
 
 @if (Model.Count == 0)

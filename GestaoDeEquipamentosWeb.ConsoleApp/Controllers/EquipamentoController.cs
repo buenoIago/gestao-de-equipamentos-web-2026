@@ -42,6 +42,20 @@ public class EquipamentoController : Controller
                 .ToList();
         }
 
+        else if (statusSelecionado == "maior-Preco")
+        {
+            equipamentos = repositorioEquipamento.SelecionarTodos()
+                .OrderByDescending(x => x.PrecoAquisicao)
+                .ToList();
+        }
+
+        else if (statusSelecionado == "menor-Preco")
+        {
+            equipamentos = repositorioEquipamento.SelecionarTodos()
+                .OrderBy(x => x.PrecoAquisicao)
+                .ToList();
+        }
+
         else 
             equipamentos = repositorioEquipamento.SelecionarTodos();
 
