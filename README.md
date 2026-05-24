@@ -57,11 +57,12 @@ Funcionalidades:
 * Filtrar chamados concluídos.
 
 ## Tecnologias Utilizadas
-C#
-ASP.NET MVC
-Razor Pages (.cshtml)
-HTML
-CSS
+
+* C#
+* ASP.NET MVC
+* Razor Pages (.cshtml)
+* HTML
+* CSS
 
 ## Objetivo do Projeto
 
