@@ -22,17 +22,34 @@ public class EquipamentoController : Controller
         repositorioFabricante = new RepositorioFabricanteEmArquivo(contexto);
     }
 
-    // Ações / Operação CRUD
     [HttpGet]
-    public ActionResult Listar()
+    public ActionResult Listar(string status)
     {
-        List<Equipamento> equipamentos = repositorioEquipamento.SelecionarTodos();
+        string? statusSelecionado = status;
 
-        List<ListarEquipamentosViewModel> listarVms = new List<ListarEquipamentosViewModel>();
+        List<Equipamento> equipamentos;
+
+        if (statusSelecionado == "mais-Recentes")
+        {
+            equipamentos = repositorioEquipamento.SelecionarTodos()
+                .OrderByDescending(x => x.DataFabricacao)
+                .ToList();
+        }
+        else if (statusSelecionado == "mais-Antigos")
+        {
+            equipamentos = repositorioEquipamento.SelecionarTodos()
+                .OrderBy(x => x.DataFabricacao)
+                .ToList();
+        }
+
+        else 
+            equipamentos = repositorioEquipamento.SelecionarTodos();
+
+        List<ListarEquipamentosViewModel> vizualizarEquipamentos = new List<ListarEquipamentosViewModel>();
 
         foreach (Equipamento e in equipamentos)
         {
-            ListarEquipamentosViewModel viewModel = new ListarEquipamentosViewModel(
+            ListarEquipamentosViewModel equipamentosVm = new ListarEquipamentosViewModel(
                 e.Id,
                 e.Nome,
                 e.PrecoAquisicao,
@@ -40,10 +57,12 @@ public class EquipamentoController : Controller
                 e.Fabricante.Nome
             );
 
-            listarVms.Add(viewModel);
+            vizualizarEquipamentos.Add(equipamentosVm);
         }
 
-        return View(listarVms);
+        ViewBag.StatusSelecionado = statusSelecionado;
+        
+        return View(vizualizarEquipamentos);
     }
 
     [HttpGet]
