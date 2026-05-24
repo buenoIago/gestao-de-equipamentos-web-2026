@@ -12,6 +12,7 @@
     <Folder Include="ModuloEquipamento\" />
     <Folder Include="ModuloFabricante\" />
     <Folder Include="Controllers\" />
+    <Folder Include="Views\Equipamento\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>

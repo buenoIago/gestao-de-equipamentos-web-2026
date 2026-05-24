@@ -1,37 +1,64 @@
-﻿@{
+﻿﻿@using GestaoDeEquipamentosWeb.ConsoleApp.Models
+
+@{
     Layout = "_Layout";
     ViewBag.Titulo = "Listagem de Fabricantes";
 }
 
-@using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante
+@model List<ListarFabricantesViewModel>;
 
-@model List<Fabricante>;
+<a class="btn-cadastrar" asp-action="Cadastrar">Cadastrar Novo</a>
 
-<a class="btn-cadastrar" href="/Fabricante/Cadastrar">Cadastrar Novo</a>
+<div class="filtros-listagem">
 
-<Table class="registros">
+    <a class="@(string.IsNullOrWhiteSpace(ViewBag.StatusSelecionado) ? "ativo" : "")"
+       asp-action="Listar">
+        Todos
+    </a>
+
+    <a class="@(ViewBag.StatusSelecionado == "A-Z" ? "ativo" : "")" 
+        asp-action="Listar"
+        asp-route-status="A-Z">
+        A-Z 
+    </a>
+
+     <a class="@(ViewBag.StatusSelecionado == "Z-A" ? "ativo" : "")"
+        asp-action="Listar"
+        asp-route-status="Z-A">
+        Z-A
+    </a>
+
+</div>
+
+@if (Model.Count == 0)
+{
+    <p class="formulario-alerta">Nenhum Fabricante registrado!</p>
+}
+
+
+<table class="registros">
     <thead>
         <tr>
-            <th> ID </th>
-            <th> Nome  </th>
-            <th> Email </th>
-            <th> Telefone </th>
-            <th> Ações </th>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (Fabricante f in Model)
+        @foreach (ListarFabricantesViewModel f in Model)
         {
             <tr>
-                <td>@f.Id</td>
-                <td>@f.Nome</td>
-                <td>@f.Email</td>
-                <td>@f.Telefone</td>
-                <td>
-                    <a href="/Fabricante/Editar/@f.Id">Editar</a>
-                    <a href="/Fabricante/Excluir/">Excluir</a>
+                <td data-label="ID">@f.Id</td>
+                <td data-label="Nome">@f.Nome</td>
+                <td data-label="Email">@f.Email</td>
+                <td data-label="Telefone">@f.Telefone</td>
+                <td data-label="Ações">
+                    <a asp-action="Editar" asp-route-id="@f.Id">Editar</a>
+                    <a asp-action="Excluir" asp-route-id="@f.Id">Excluir</a>
                 </td>
-            </tr>   
+            </tr>
         }
     </tbody>
-</Table>
+</table>

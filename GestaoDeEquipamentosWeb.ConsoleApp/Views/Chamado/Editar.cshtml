@@ -1,0 +1,43 @@
+
+@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Edição de Chamado";
+    
+    List<SelectListItem> selecionarEquipamentos = ViewBag.Equipamentos;
+}
+
+@model EditarChamadoViewModel;
+
+<form class="formulario" asp-action="Editar" asp-route-id="@Model.Id" method="post">
+    <div class="formulario-campo">
+        <label asp-for="Titulo">Título</label>
+        <input asp-for="Titulo" type="text">
+        <span asp-validation-for="Titulo" class="formulario-validacao-campo"></span>
+    </div>
+
+    <div class="formulario-campo">
+        <label asp-for="Descricao">Descrição</label>
+        <textarea asp-for="Descricao"></textarea>
+        <span asp-validation-for="Descricao" class="formulario-validacao-campo"></span>
+    </div>
+
+    <div class="formulario-campo">
+        <label asp-for="EquipamentoId">Equipamento</label>
+        <select asp-for="EquipamentoId" asp-items="selecionarEquipamentos">
+            <option value="">Selecione um equipamento</option>
+        </select>
+        <span asp-validation-for="EquipamentoId" class="formulario-validacao-campo"></span>
+    </div>
+
+    <div class="formulario-campo">
+        <label style="display: flex; align-items: center; gap: 10px">
+            <input asp-for="EstaConcluido" type="checkbox" style="width: auto;">
+            Concluído
+        </label>
+    </div>
+    
+    <div class="formulario-acoes">
+        <a asp-action="Listar">Voltar</a>
+        <button type="submit">Confirmar</button>
+    </div>
+</form>

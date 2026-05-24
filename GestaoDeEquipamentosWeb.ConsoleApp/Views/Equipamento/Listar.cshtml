@@ -1,0 +1,75 @@
+﻿@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Listagem de Equipamentos";
+}
+
+@model List<ListarEquipamentosViewModel>
+
+<a class="btn-cadastrar" asp-action="Cadastrar">Cadastrar Novo</a>
+
+<div class="filtros-listagem">
+
+    <a class="@(string.IsNullOrWhiteSpace(ViewBag.StatusSelecionado) ? "ativo" : "")"
+       asp-action="Listar">
+        Todos
+    </a>
+
+    <a class="@(ViewBag.StatusSelecionado == "mais-Recentes" ? "ativo" : "")"
+        asp-action="Listar"
+        asp-route-status="mais-Recentes">
+        Mais Recentes
+    </a>
+
+    <a class="@(ViewBag.StatusSelecionado == "mais-Antigos" ? "ativo" : "")"
+        asp-action="Listar"
+        asp-route-status="mais-Antigos">
+        Mais Antigos
+    </a>
+
+    <a class="@(ViewBag.StatusSelecionado == "maior-Preco" ? "ativo" : "")"
+        asp-action="Listar"
+        asp-route-status="maior-Preco">
+        Maior Preço
+    </a>
+
+    <a class="@(ViewBag.StatusSelecionado == "menor-Preco" ? "ativo" : "")"
+        asp-action="Listar"
+        asp-route-status="menor-Preco">
+        Menor Preço
+    </a>
+
+</div>
+
+@if (Model.Count == 0)
+{
+    <p class="formulario-alerta">Nenhum Equipamento registrado!</p>
+}
+
+<table class="registros">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Preço de Aquisição</th>
+            <th>Data de Fabricação</th>
+            <th>Fabricante</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ListarEquipamentosViewModel e in Model)
+        {
+            <tr>
+                <td data-label="ID">@e.Id</td>
+                <td data-label="Nome">@e.Nome</td>
+                <td data-label="Preço de Aquisição">@e.PrecoAquisicao.ToString("C2")</td>
+                <td data-label="Data de Fabricação">@e.DataFabricacao.ToShortDateString()</td>
+                <td data-label="Fabricante">@e.Fabricante</td>
+                <td data-label="Ações">
+                    <a asp-action="Editar" asp-route-id="@e.Id">Editar</a>
+                    <a asp-action="Excluir" asp-route-id="@e.Id">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

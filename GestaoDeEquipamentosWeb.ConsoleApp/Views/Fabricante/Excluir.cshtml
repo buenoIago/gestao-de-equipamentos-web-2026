@@ -1,34 +1,36 @@
-﻿@{
+﻿﻿
+@{
     Layout = "_Layout";
-    ViewBag.Titulo = "Exclusão de Fabricantes";
+    ViewBag.Titulo = "Exclusão de Fabricante";
 }
 
-@using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante
+@model ExcluirFabricanteViewModel;
 
-@model Fabricante
+<form class="formulario" asp-action="Excluir" asp-route-id="@Model.Id" method="post">
+    <input asp-for="Id" type="hidden">
 
-<form action="/Fabricante/Excluir/@Model.Id  "method="post">
-    <div>
-        <label>Nome</label>
-        <br>
-        <input type="text" name="Nome" value="@Model.Nome" disabled>
+    <p class="formulario-alerta">Deseja realmente excluir este fabricante?</p>
+
+    <div class="formulario-campo">
+        <label asp-for="Nome">Nome</label>
+        <input asp-for="Nome" type="text" disabled>
+
     </div>
 
-    <div>
-        <label>Email</label>
-        <br>
-        <input type="text" name="Email" value="@Model.Email" disabled>
+    <div class="formulario-campo">
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" type="email" disabled>
+
     </div>
 
-    <div>
-        <label>Telefone</label>
-        <br>
-        <input type="text" name="Telefone" value="@Model.Telefone" disabled>
-    </div>  
+    <div class="formulario-campo">
+        <label asp-for="Telefone">Telefone</label>
+        <input asp-for="Telefone" type="text" disabled>
 
-    <hr>
-    
-    <a href="Fabricante/Listar">Voltar</a>
-    <button type="submit"">Confirmar</button>
+    </div>
 
+    <div class="formulario-acoes">
+        <a asp-action="Listar">Voltar</a> 
+        <button type="submit">Confirmar</button>
+    </div>
 </form>

@@ -30,10 +30,14 @@ public class Chamado : EntidadeBase<Chamado>
         Descricao = descricao;
     }
 
-    public void Concluir()
+    public Chamado(string titulo, Equipamento equipamento, bool estaConcluido, string? descricao = null) : this()
     {
-        EstaConcluido = true;
+        Titulo = titulo;
+        Equipamento = equipamento;
+        EstaConcluido = estaConcluido;
+        Descricao = descricao;
     }
+
 
     public override List<string> Validar()
     {
@@ -53,5 +57,6 @@ public class Chamado : EntidadeBase<Chamado>
         Titulo = entidadeAtualizada.Titulo;
         Descricao = entidadeAtualizada.Descricao;
         Equipamento = entidadeAtualizada.Equipamento;
+        EstaConcluido = entidadeAtualizada.EstaConcluido;
     }
 }

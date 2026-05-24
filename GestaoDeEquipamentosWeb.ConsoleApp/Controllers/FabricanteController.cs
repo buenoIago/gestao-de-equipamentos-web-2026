@@ -1,8 +1,10 @@
 using GestaoDeEquipamentosWeb.ConsoleApp.Compartilhado;
 using GestaoDeEquipamentosWeb.ConsoleApp.Compartilhado.Arquivos;
+using GestaoDeEquipamentosWeb.ConsoleApp.Models;
 using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers;
 
@@ -10,40 +12,86 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers;
 public class FabricanteController : Controller
 {
     private readonly IRepositorio<Fabricante> repositorioFabricante;
+
     public FabricanteController()
     {
         ContextoJson contexto = new ContextoJson();
         contexto.Carregar();
 
-         repositorioFabricante = 
+        repositorioFabricante =
             new RepositorioFabricanteEmArquivo(contexto);
     }
- 
-    // GET: FabricanteController
-    [HttpGet]
-    public ActionResult Listar()
-    {
-        List<Fabricante> fabricantes = repositorioFabricante.SelecionarTodos();
 
-        return View(fabricantes);
+    [HttpGet]
+    public ActionResult Listar(string status)
+    {
+        string? statusSelecionado = status;
+        
+        List<Fabricante> fabricantes;
+
+        if (statusSelecionado == "A-Z")
+        {
+            fabricantes = repositorioFabricante.SelecionarTodos()
+            .OrderBy(x => x.Nome)
+            .ToList();
+        }
+        
+        else if (statusSelecionado == "Z-A")
+        {
+            fabricantes = repositorioFabricante.SelecionarTodos()
+            .OrderByDescending(x => x.Nome)
+            .ToList();
+        }
+
+        else
+            fabricantes = repositorioFabricante.SelecionarTodos();
+
+        List<ListarFabricantesViewModel> listarVms = new List<ListarFabricantesViewModel>();
+
+        foreach (Fabricante f in fabricantes)
+        {
+            ListarFabricantesViewModel viewModel = new ListarFabricantesViewModel(
+                f.Id,
+                f.Nome,
+                f.Email,
+                f.Telefone
+            );
+
+            listarVms.Add(viewModel);
+        }
+
+        ViewBag.statusSelecionado = statusSelecionado;
+
+        return View(listarVms);
     }
 
     [HttpGet]
     public ActionResult Cadastrar()
     {
-        return View();
+        CadastrarFabricanteViewModel cadastrarVm = new CadastrarFabricanteViewModel(
+            string.Empty,
+            string.Empty,
+            string.Empty
+        );
+
+        return View(cadastrarVm);
     }
 
     [HttpPost]
-    public ActionResult Cadastrar(string nome, string email, string telefone)
+    public ActionResult Cadastrar(CadastrarFabricanteViewModel cadastrarVm)
     {
-        Fabricante novoFabricante = new Fabricante(nome, email, telefone);
+        if (!ModelState.IsValid)
+            return View(cadastrarVm);
+            
+        Fabricante novoFabricante = new Fabricante(
+            cadastrarVm.Nome,
+            cadastrarVm.Email,
+            cadastrarVm.Telefone
+        );
 
         repositorioFabricante.Cadastrar(novoFabricante);
-    
-        string listarStr = nameof(Listar); // "Listar"
 
-        return RedirectToAction("Listar");
+        return RedirectToAction(nameof(Listar));
     }
 
     [HttpGet]
@@ -54,34 +102,56 @@ public class FabricanteController : Controller
         if (fabricante == null)
             return RedirectToAction(nameof(Listar));
 
-        return View(fabricante);
+        EditarFabricanteViewModel editarVm = new EditarFabricanteViewModel(
+            id,
+            fabricante.Nome,
+            fabricante.Email,
+            fabricante.Telefone
+        );
+
+        return View(editarVm);
     }
 
     [HttpPost]
-    public ActionResult Editar(string id, string nome, string email, string telefone)
+    public ActionResult Editar(EditarFabricanteViewModel editarVm)
     {
-        Fabricante fabricanteAtualizado = new Fabricante(nome, email, telefone);
+        if (!ModelState.IsValid)
+            return View(editarVm);
+            
+        Fabricante fabricanteAtualizado = new Fabricante(
+            editarVm.Nome,
+            editarVm.Email,
+            editarVm.Telefone
+        );
 
-        repositorioFabricante.Editar(id, fabricanteAtualizado);
+        repositorioFabricante.Editar(editarVm.Id, fabricanteAtualizado);
 
-         return RedirectToAction(nameof(Listar));
+        return RedirectToAction(nameof(Listar));
     }
 
     [HttpGet]
-    public ActionResult Excluir (string id)
+    public ActionResult Excluir(string id)
     {
         Fabricante? fabricante = repositorioFabricante.SelecionarPorId(id);
 
         if (fabricante == null)
             return RedirectToAction(nameof(Listar));
 
-        return View();
+        ExcluirFabricanteViewModel excluirVm = new ExcluirFabricanteViewModel(
+            id,
+            fabricante.Nome,
+            fabricante.Email,
+            fabricante.Telefone
+        );
+
+        return View(excluirVm);
     }
-    
+
     [HttpPost]
-    public ActionResult ExcluirConfirmado(string id)
+    [ActionName("Excluir")]
+    public ActionResult ExcluirConfirmado(ExcluirFabricanteViewModel excluirVm)
     {
-        Fabricante? fabricante = repositorioFabricante.SelecionarPorId(id);
+        Fabricante? fabricante = repositorioFabricante.SelecionarPorId(excluirVm.Id);
 
         if (fabricante == null)
             return RedirectToAction(nameof(Listar));

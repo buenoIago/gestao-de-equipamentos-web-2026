@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Cadastro de Equipamento";
+
+    List<SelectListItem> selecionarFabricantes = ViewBag.Fabricantes;
+}
+
+@model CadastrarEquipamentoViewModel;
+
+<form class="formulario" asp-action="Cadastrar" method="post">
+
+    <div class="formulario-campo">
+        <label asp-for="Nome">Nome</label>
+        <input asp-for="Nome" type="text">
+        <span asp-validation-for="Nome" class="formulario-validacao-campo"></span>
+    </div>
+
+    <div class="formulario-campo">
+        <label asp-for="PrecoAquisicao">Preço de Aquisição</label>
+        <input asp-for="PrecoAquisicao" type="number" min="0.01" step="0.01">
+        <span asp-validation-for="PrecoAquisicao" class="formulario-validacao-campo"></span>
+    </div>
+
+    <div class="formulario-campo">
+        <label asp-for="DataFabricacao">Data de Fabricação</label>
+        <input asp-for="DataFabricacao" type="date">
+        <span asp-validation-for="DataFabricacao" class="formulario-validacao-campo"></span>
+    </div>
+
+    <div class="formulario-campo">
+        <label asp-for="FabricanteId">Fabricante</label>
+        <select asp-for="FabricanteId" asp-items="selecionarFabricantes">
+            <option value="">Selecione um fabricante</option>
+        </select>
+        <span asp-validation-for="FabricanteId" class="formulario-validacao-campo"></span>
+    </div>
+
+    <div class="formulario-acoes">
+        <a asp-action="Listar">Voltar</a>
+        <button type="submit">Confirmar</button>
+    </div>
+</form>

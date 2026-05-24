@@ -1,3 +1,5 @@
+using GestaoDeEquipamentosWeb.ConsoleApp.ModuloChamado;
+
 namespace GestaoDeEquipamentosWeb.ConsoleApp.Compartilhado;
 
 public interface IRepositorio<T> where T : EntidadeBase<T>
@@ -7,4 +9,5 @@ public interface IRepositorio<T> where T : EntidadeBase<T>
     bool Excluir(T registro);
     T? SelecionarPorId(string idSelecionado);
     List<T> SelecionarTodos();
+    List<T> Filtrar(Predicate<T> filtro);
 }
